@@ -9,5 +9,7 @@ html
     = javascript_pack_tag 'application', 'data-turbolinks-track': 'reload'
 
   body
+    - flash.each do |name, msg|
+      = content_tag :p, msg, class: name
 
     = yield

@@ -31,3 +31,8 @@
 
 en:
   hello: "Hello world"
+
+  helpers:
+    submit:
+      signin:
+        submit: "Sign In"
