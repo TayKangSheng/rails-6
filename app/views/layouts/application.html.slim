@@ -9,6 +9,16 @@ html
     = javascript_pack_tag 'application', 'data-turbolinks-track': 'reload'
 
   body
+    header
+      nav.logo
+        h1 = link_to t("application.name"), root_path
+
+      nav.nav
+        - if current_user
+          = link_to "Sign Out", signout_path, method: :delete
+        - else
+          = link_to "Sign In", signin_path
+
     - flash.each do |name, msg|
       = content_tag :p, msg, class: name
 
