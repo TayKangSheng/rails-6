@@ -1,0 +1,22 @@
+= form_for :signup do |f|
+  .field
+    = f.label :name
+    = f.text_field :name, value: @user.name
+    div.alert = @user.errors.messages[:name].join("\n").humanize
+
+  .field
+    = f.label :email
+    = f.text_field :email, value: @user.email
+    div.alert = @user.errors.messages[:email].join("\n").humanize
+
+  .field
+    = f.label :password
+    = f.password_field :password
+    div.alert = @user.errors.messages[:password].join("\n").humanize
+
+  .field
+    = f.label :password_confirmation
+    = f.password_field :password_confirmation
+    div.alert = @user.errors.messages[:password_confirmation].join("\n").humanize
+
+  .actions = f.submit t("user.registration.submit")

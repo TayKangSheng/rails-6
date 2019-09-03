@@ -9,7 +9,7 @@ RSpec.describe "Users::Session" do
   end
 
   describe "POST /signin" do
-    let!(:user) { User.create(name: "user1", password: "password") }
+    let!(:user) { User.create(name: "user1", email: "user1@example.com", password: "password") }
 
     it "sign in user" do
       post signin_path, params: { signin: { name: "user1", password: "password" } }

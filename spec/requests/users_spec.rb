@@ -17,14 +17,14 @@ RSpec.describe "Users", type: :request do
 
   describe "POST /users" do
     it "creates a new user" do
-      user_attributes = { name: "User1", password: "Password" }
+      user_attributes = { name: "User1", email: "user1@example.com", password: "password1" }
       expect do
         post users_path, params: { user: user_attributes }
       end.to change(User, :count).by(1)
     end
 
     it "does not creates new user if attributes are not valid" do
-      user_attributes = { name: "User1" }
+      user_attributes = { name: "User1", email: "user1@example.com" }
       expect do
         post users_path, params: { user: user_attributes }
       end.to change(User, :count).by(0)
@@ -32,7 +32,7 @@ RSpec.describe "Users", type: :request do
   end
 
   describe "PATCH/PUT /users" do
-    let!(:user) { User.create(name: "User1", password: "Password") }
+    let!(:user) { User.create(name: "User1", email: "user1@example.com", password: "Password") }
 
     it "updates a user" do
       put user_path(user.id), params: { user: { id: user.id, name: "User2" } }
@@ -43,7 +43,7 @@ RSpec.describe "Users", type: :request do
     end
 
     it "does not update a user if attributes are not valid" do
-      User.create(name: "User2", password: "Password")
+      User.create(name: "User2", email: "user2@example.com", password: "Password")
 
       put user_path(user.id), params: { user: { id: user.id, name: "User2" } }
 
@@ -54,7 +54,7 @@ RSpec.describe "Users", type: :request do
   end
 
   describe "DELETE /user/:id" do
-    let!(:user) { User.create(name: "User1", password: "Password") }
+    let!(:user) { User.create(name: "User1", email: "user1@example.com", password: "Password") }
 
     it "deletes user" do
       expect do

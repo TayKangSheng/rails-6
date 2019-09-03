@@ -17,6 +17,8 @@ html
         - if current_user
           = link_to "Sign Out", signout_path, method: :delete
         - else
+          = link_to "Sign Up", signup_path
+          | &nbsp;&#47;&nbsp;
           = link_to "Sign In", signin_path
 
     - flash.each do |name, msg|
